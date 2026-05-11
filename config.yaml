@@ -1,0 +1,86 @@
+trpe_model: deepseek-v3 # qwen-max-latest, qwen2.5-72b-instruct, deepseek-v3
+tr_model: Qwen2.5-14B
+sft_model: Qwen2.5-14B
+lang: zh2vi
+gpus: 0,1,2,3,4,5,6,7
+
+##########################以下为基本无需修改的参数##########################
+
+# 句子级切片相关参数
+sentence_split_model: deepseek-v3 # qwen-max-latest, qwen2.5-72b-instruct, deepseek-v3
+sentence_split_refine_models: qwen-max-latest, deepseek-v3
+sentence_split_retry_num: 3
+sentence_split_num_workers: 45
+
+# 术语识别PE调用本地模型还是线上服务
+trpe_mode: online # online or local, 建议online，可以调用性能更优的api
+trpe_num_workers: 30
+tr_align_model: deepseek-v3 # deepseek-v3, qwen-max-latest
+
+# 本地推理服务部署相关参数
+port: 60001
+retry_num: 20
+
+# 字幕分片相关参数
+evaluation_mode: true # 决定生成分片对照结果还是测试集的字幕文件，前者为true，后者为false
+step: 25 # 每个prompt中的台词数量为step + 2 * context_len
+context_len: 5
+threshold_limit: 0.7 # 双语字幕对齐时字幕时间的最大间隔（单位：秒）
+
+# 专有名词相关参数
+filter_threshold: 2 # 专有名词过滤阈值
+
+# 质量对齐相关参数
+sft_proportion: 1.0 # zh2en:0.85, en2zh:0.75, zh2en:0.85, ja2zh:0.65, ko2zh:0.83, en2fr:0.8
+sample_num: 15
+temperature: 0.7
+top_p: 0.9
+top_k: 40
+label_preference_model: deepseek-v3 # qwen-max-latest, qwen2.5-72b-instruct, deepseek-v3
+label_preference_vote_num: 4
+label_preference_retry_num: 3
+label_preference_num_workers: 50
+dpo_mode: outcome # outcome or segment
+dpo_global_batch_size: 96
+dpo_lr: 1.0e-6
+dpo_epochs: 1
+dpo_finetuning_type: full
+
+# Preference alignment backend: alpo or dpo
+alignment_method: alpo
+
+# ALPO self-contained training parameters
+alpo_min_candidates: 3
+alpo_min_score_gap: 5.0
+alpo_chosen_top_k: 3
+alpo_rejected_rank: 3
+alpo_lambda_start: 0.2
+alpo_lambda_end: 0.6
+alpo_prefix_stages: 5
+alpo_seed: 1024
+alpo_global_batch_size: 96
+alpo_batch_size_per_gpu: 1
+alpo_gradient_accumulation_steps: 12
+alpo_lr: 1.0e-6
+alpo_epochs: 1
+alpo_finetuning_type: full
+alpo_cutoff_len: 8192
+alpo_beta_scale: 1.0
+alpo_average_log_prob: false
+alpo_reference_free: false
+alpo_gradient_checkpointing: true
+alpo_deepspeed: alpo_deepspeed_z3.json
+
+# 模型训练相关参数
+model_path: /data2/cuichaoqun/Models
+sft_global_batch_size: 96
+sft_lr: 1.0e-6
+sft_epochs: 5
+tr_global_batch_size: 96
+tr_lr: 1.0e-6
+tr_epochs: 5
+
+# 质量评估模块相关参数
+evaluate_num: 100
+evaluate_models: deepseek-v3, qwen-max-latest, qwen2.5-72b-instruct # qwen2.5-72b-instruct, qwen-max-latest, qwen-max-0428, deepseek-v3, gpt3.5, gpt4o, claude35sonnet
+evaluate_dimensions: acc,nat,vivi
