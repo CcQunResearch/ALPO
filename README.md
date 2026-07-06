@@ -136,6 +136,13 @@ Generated predictions and evaluation results are saved under:
 Inference/{lang}/
 ```
 
+## License
+
+The code in this repository and the MuSC dataset are licensed separately.
+
+- **MuSC dataset**: released under the Creative Commons Attribution 4.0 International License (CC BY 4.0). See [`DATA_LICENSE`](DATA_LICENSE).
+- **Citation**: If you use the MuSC dataset or this repository, please cite our paper.
+
 ## Citation
 
 If you use this code or dataset, please cite our paper:
