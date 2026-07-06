@@ -1,0 +1,23 @@
+MuSC Dataset License
+
+The MuSC dataset associated with the paper "From Utterance to Vividity: Training Expressive Subtitle Translation LLM via Adaptive Local Preference Optimization" is released under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+This license applies to the original annotations, translations, preference labels, metadata, and other original contributions created by the MuSC authors. Any third-party source content, if present, remains subject to the rights of its original owners.
+
+You are free to share and adapt the dataset for any purpose, including commercial use, provided that you give appropriate credit, provide a link to the license, and indicate if changes were made.
+
+To view a copy of this license, visit:
+https://creativecommons.org/licenses/by/4.0/
+
+Please cite the following paper when using the dataset:
+
+@article{cui2026utterance,
+  title={From Utterance to Vividity: Training Expressive Subtitle Translation LLM via Adaptive Local Preference Optimization},
+  author={Cui, Chaoqun and Wang, Shijing and Huang, Liangbin and Gu, Qingqing and Huang, Zhaolong and Zeng, Xiao and Mao, Wenji},
+  journal={arXiv preprint arXiv:2602.01068},
+  year={2026}
+}
+
+Copyright (c) 2026 Chaoqun Cui and co-authors.
+
+No warranties are given. The dataset is provided "as is".
